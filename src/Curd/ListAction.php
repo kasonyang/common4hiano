@@ -11,14 +11,22 @@ trait ListAction{
     /**
      * @return \Hitar\Table Description
      */
-    abstract function getListTable();
+    abstract function getTable();
+    
+    /**
+     * 
+     * @param \Hitar\Table $table
+     */
+    function filterTableForList(&$table){
+        //do nothing
+    }
             
     function listAction(){
-        /* @var $this \Hiano\Controller\Controller */
         if($this->request->isPost()){
             \Hiano\App\App::redirectPostAsParameter();
         }
-        $tb = $this->getListTable();
+        $tb = $this->getTable();
+        $this->filterTableForList($tb);
         /* @var $tb \Hitar\Table */
         $this->view->set('list', $tb->select());
     }
