@@ -12,7 +12,7 @@
         "kasonyang/hiano" : "*"
     },
     "autoload" : {
-        "psr4":{
+        "psr-4":{
             "Common4hiano\\" : "src"
         }
     }
