@@ -1,0 +1,19 @@
+{
+    "name": "kasonyang/common4hiano",
+    "description": "",
+    "authors": [
+        {
+            "name": "Kason Yang",
+            "email": "i@kasonyang.com"
+        }
+    ],
+    "require": {
+        "kasonyang/hitar" : "*",
+        "kasonyang/hiano" : "*"
+    },
+    "autoload" : {
+        "psr4":{
+            "Common4hiano\\" : "src"
+        }
+    }
+}
