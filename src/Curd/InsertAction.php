@@ -4,7 +4,7 @@
  * 
  * @author Kason Yang <i@kasonyang.com>
  */
-namespace Common4hiano\CurdAction;
+namespace Common4hiano\Curd;
 
 trait InsertAction {
     
