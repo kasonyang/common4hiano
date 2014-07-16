@@ -22,7 +22,7 @@ trait InsertAction {
             $this->insertModel();
             \Hiano\App\App::redirectRequest('list');
         } else {
-            $this->view->set('model', $this->getFormDataForInsert());
+            $this->view->set('model', $this->getInitModelForInsert());
             $this->view->set($this->getReadyDataForInsert());
         }
     }
