@@ -9,16 +9,9 @@ namespace Common4hiano\Curd;
 
 trait InsertAction {
 
-    /**
-     * @return \Hitar\Table Description
-     */
-    abstract function getTable();
+    abstract function getInitModelForInsert();
 
-    abstract function getDataForInsert();
-
-    function getFormDataForInsert() {
-        return array();
-    }
+    abstract function insertModel();
 
     function getReadyDataForInsert() {
         return array();
@@ -26,11 +19,10 @@ trait InsertAction {
 
     function insertAction() {
         if ($this->request->isPost()) {
-            $data = $this->getDataForInsert();
-            $this->getTable()->insert($data);
+            $this->insertModel();
             \Hiano\App\App::redirectRequest('list');
         } else {
-            $this->view->set('data', $this->getFormDataForInsert());
+            $this->view->set('model', $this->getFormDataForInsert());
             $this->view->set($this->getReadyDataForInsert());
         }
     }
