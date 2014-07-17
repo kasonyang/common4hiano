@@ -11,18 +11,19 @@ trait InsertAction {
 
     abstract function getInitModelForInsert();
 
-    abstract function insertModel();
+    abstract function completeModelForInsert($model);
 
     function getReadyDataForInsert() {
         return array();
     }
 
     function insertAction() {
+        $model = $this->getInitModelForInsert();
         if ($this->request->isPost()) {
-            $this->insertModel();
+            $this->completeModelForInsert($model);
             \Hiano\App\App::redirectRequest('list');
         } else {
-            $this->view->set('model', $this->getInitModelForInsert());
+            $this->view->set('model', $model);
             $this->view->set($this->getReadyDataForInsert());
         }
     }

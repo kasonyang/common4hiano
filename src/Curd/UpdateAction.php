@@ -11,7 +11,7 @@ trait UpdateAction {
 
     abstract function getRequestModel();
 
-    abstract function updateModel($model);
+    abstract function completeModelForUpdate($model);
 
     function getReadyDataForUpdate() {
         return array();
@@ -20,7 +20,7 @@ trait UpdateAction {
     function updateAction() {
         $record = $this->getRequestModel();
         if ($this->request->isPost()) {
-            $this->updateModel($record);
+            $this->completeModelForUpdate($record);
             \Hiano\App\App::redirectRequest();
         }
         $this->view->set('model', $record);
