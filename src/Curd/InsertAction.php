@@ -21,6 +21,7 @@ trait InsertAction {
         $model = $this->getInitModelForInsert();
         if ($this->request->isPost()) {
             $this->completeModelForInsert($model);
+            $model->save();
             \Hiano\App\App::redirectRequest('list');
         } else {
             $this->view->set('model', $model);

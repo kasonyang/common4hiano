@@ -21,6 +21,7 @@ trait UpdateAction {
         $record = $this->getRequestModel();
         if ($this->request->isPost()) {
             $this->completeModelForUpdate($record);
+            $record->save();
             \Hiano\App\App::redirectRequest();
         }
         $this->view->set('model', $record);
