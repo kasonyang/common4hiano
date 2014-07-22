@@ -16,15 +16,24 @@ trait UpdateAction {
     function getReadyDataForUpdate() {
         return array();
     }
-
+    
+    function afterUpdate($model){
+        \Hiano\App\App::redirectRequest('list');
+    }
+    
     function updateAction() {
         $record = $this->getRequestModel();
-        if ($this->request->isPost()) {
-            $this->completeModelForUpdate($record);
-            $record->save();
-            \Hiano\App\App::redirectRequest();
-        }
         $this->view->set('model', $record);
+        if ($this->request->isPost()) {
+            try{
+                $this->completeModelForUpdate($record);
+            }  catch (\Common4hiano\Curd\InputException $e){
+                $this->view->set($this->getReadyDataForUpdate());
+                $this->error($e->getMessage());
+            }
+            $record->save();
+            $this->afterUpdate($record);
+        }
         $this->view->set($this->getReadyDataForUpdate());
     }
 
