@@ -13,6 +13,10 @@ trait ListAction {
      * @return \Hitar\Table Description
      */
     abstract function getTableForList();
+    
+    function afterSelectOfList($list){
+        
+    }
 
     function listAction() {
         if ($this->request->isPost()) {
@@ -20,7 +24,9 @@ trait ListAction {
         }
         $tb = $this->getTableForList();
         /* @var $tb \Hitar\Table */
-        $this->view->set('list', $tb->select());
+        $list =  $tb->select();
+        $this->view->set('list',$list);
+        $this->afterSelectOfList($list);
     }
 
 }
